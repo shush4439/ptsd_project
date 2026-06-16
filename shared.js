@@ -365,11 +365,11 @@ function initRouter() {
       const navBar = document.getElementById('bottom-nav');
       const sosBtn = document.getElementById('floating-sos-btn');
       
-      if (screenName === 'emergency-mode') {
+      if (screenName === 'login') {
         sosBtn.style.display = 'none';
         navBar.style.display = 'none';
-      } else if (screenName === 'login') {
-        sosBtn.style.display = 'none';
+      } else if (screenName === 'emergency-mode') {
+        sosBtn.style.display = 'flex';
         navBar.style.display = 'none';
       } else {
         sosBtn.style.display = 'flex';
