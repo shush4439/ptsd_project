@@ -97,6 +97,18 @@ const db = {
           accessibility_mode: false,
           allow_home_access: false
         });
+
+        // Pre-populate default contacts to ensure the presentation is not empty
+        DEFAULT_CONTACTS.forEach(c => {
+          fallbackStore.contacts.push({
+            id: c.id,
+            user_id: user.id,
+            name: c.name,
+            phone: c.phone,
+            relation: c.relation,
+            created_at: new Date()
+          });
+        });
       } else {
         // Reset home access lock on login
         const setting = fallbackStore.settings.find(s => s.user_id === user.id);
