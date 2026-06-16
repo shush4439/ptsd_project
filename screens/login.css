@@ -1,0 +1,272 @@
+/* Login Screen Styles */
+.login-screen {
+  position: relative; /* Position context for the absolute accessibility toggle card */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: 24px 0 10px 0;
+  color: var(--text-primary);
+}
+
+.login-header {
+  text-align: center;
+  margin-top: 40px;
+  animation: fadeInDown 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.app-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--border-radius-md);
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-secondary-light));
+  color: var(--color-primary);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.high-contrast .app-logo {
+  border: 2px solid #FFFFFF;
+  background: #000;
+  color: var(--color-primary);
+}
+
+.logo-icon {
+  width: 38px;
+  height: 38px;
+  stroke-width: 2px;
+}
+
+.login-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.calm-message {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.login-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-guest {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  box-shadow: 0 6px 20px rgba(0, 150, 180, 0.25);
+  font-size: 17px;
+  letter-spacing: 0.2px;
+}
+
+body.high-contrast .btn-guest {
+  background: var(--color-primary);
+  box-shadow: none;
+}
+
+.btn-guest i {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.5px;
+  transition: transform 0.2s ease;
+}
+
+.btn-guest:hover i {
+  transform: translateX(-4px);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  margin: 8px 0;
+}
+
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.06);
+}
+
+.divider::before {
+  margin-right: .75em;
+}
+
+.divider::after {
+  margin-left: .75em;
+}
+
+body.high-contrast .divider::before, body.high-contrast .divider::after {
+  border-color: #FFFFFF;
+}
+
+.social-login-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-social {
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  justify-content: flex-start;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--border-radius-md);
+  background-color: var(--bg-card);
+}
+
+.btn-social i {
+  width: 18px;
+  height: 18px;
+  margin-inline-end: 12px;
+}
+
+.login-footer {
+  margin-bottom: 0;
+  height: 0;
+}
+
+/* Accessibility Card styling */
+.accessibility-card {
+  position: absolute;
+  bottom: -80px; /* Aligns horizontally with the bottom: 100px SOS button (180px parent padding - 80px offset = 100px) */
+  left: 78px; /* Offset to clear the SOS button on the left (20px page margin + 78px = 98px start, leaving 16px gap from SOS) */
+  right: 0;
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-md);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+body.high-contrast .accessibility-card {
+  border: 2px solid #FFFFFF;
+}
+
+.acc-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.acc-info i {
+  width: 22px;
+  height: 22px;
+  color: var(--color-primary);
+}
+
+.acc-text {
+  text-align: right;
+}
+
+.acc-title {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.acc-subtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* iOS Style Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-input);
+  transition: .3s;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .3s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+body.high-contrast .slider:before {
+  background-color: #00FFFF;
+}
+
+input:checked + .slider {
+  background-color: var(--color-primary);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--color-primary);
+}
+
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

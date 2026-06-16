@@ -1,0 +1,74 @@
+<div class="focus-screen screen-fade-in">
+  <!-- Header -->
+  <div class="screen-header">
+    <a href="home" data-link class="back-btn" aria-label="חזרה לדף הבית">
+      <i data-lucide="arrow-right"></i>
+    </a>
+    <h2>כלי מיקוד</h2>
+    <div class="header-spacer"></div>
+  </div>
+
+  <!-- Activity Selector (Segmented control) -->
+  <div class="focus-tabs">
+    <button class="focus-tab-btn active" id="tab-zen-pop">
+      <i data-lucide="sparkles"></i>
+      <span>בועות זן</span>
+    </button>
+    <button class="focus-tab-btn" id="tab-calm-maze">
+      <i data-lucide="compass"></i>
+      <span>דרך הרוגע</span>
+    </button>
+  </div>
+
+  <div class="focus-body">
+    <!-- Activity 1: Zen Pop Game -->
+    <div class="activity-container" id="zen-pop-container">
+      <div class="game-meta">
+        <div class="score-box">בועות שפוצצו: <span id="pop-score">0</span></div>
+        <button id="reset-game-btn" class="btn-text">
+          <i data-lucide="rotate-ccw"></i> איפוס
+        </button>
+      </div>
+      
+      <!-- Pop Playfield -->
+      <div class="pop-playfield" id="pop-playfield">
+        <div class="game-start-overlay" id="game-start-overlay">
+          <i data-lucide="bubble" class="pulse-icon"></i>
+          <h3>בועות זן</h3>
+          <p>פוצצו את הבועות. הקשיבו לצלילים המרגיעים. נשמו עמוק תוך כדי משחק.</p>
+          <button class="btn btn-primary" id="start-game-btn">להתחלת המשחק</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity 2: Calm Labyrinth Tracing -->
+    <div class="activity-container hidden" id="calm-maze-container">
+      <div class="maze-meta">
+        <p class="maze-instructions">הוליכו את האצבע לאורך השביל המפותל מתחילתו ועד סופו ברוגע.</p>
+        <div class="maze-status" id="maze-status">הניחו את האצבע על עיגול ההתחלה הירוק כדי להתחיל</div>
+      </div>
+      
+      <!-- Maze Playfield -->
+      <div class="maze-playfield" id="maze-playfield">
+        <svg id="maze-svg" viewBox="0 0 300 300" width="100%" height="100%">
+          <!-- Background Spiral Path -->
+          <path id="maze-path-bg" class="maze-path-bg" d="M 30,150 C 90,50 210,250 270,150" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="32" stroke-linecap="round"/>
+          
+          <!-- Spiral Path Inner Track for validation -->
+          <path id="maze-path-track" d="M 30,150 C 90,50 210,250 270,150" fill="none" stroke="transparent" stroke-width="48" stroke-linecap="round"/>
+
+          <!-- Drawn path tracing -->
+          <path id="maze-path-draw" class="maze-path-draw" d="M 30,150 C 90,50 210,250 270,150" fill="none" stroke="var(--color-primary)" stroke-width="12" stroke-linecap="round"/>
+
+          <!-- Start Point Indicator -->
+          <circle id="maze-start" cx="30" cy="150" r="16" class="maze-point start"/>
+          <!-- End Point Indicator -->
+          <circle id="maze-end" cx="270" cy="150" r="12" class="maze-point end"/>
+
+          <!-- Tracing guide cursor -->
+          <circle id="maze-cursor" cx="30" cy="150" r="18" class="maze-cursor hidden"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>

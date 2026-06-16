@@ -1,0 +1,43 @@
+<div class="grounding-screen screen-fade-in">
+  <!-- Header -->
+  <div class="screen-header">
+    <a href="home" data-link class="back-btn" aria-label="חזרה לדף הבית">
+      <i data-lucide="arrow-right"></i>
+    </a>
+    <h2>תרגיל קרקוע</h2>
+    <div class="header-spacer"></div>
+  </div>
+
+  <div class="grounding-body">
+    <!-- Progress Indicator Dots -->
+    <div class="step-progress">
+      <span class="progress-dot active" data-step="5">5</span>
+      <span class="progress-dot" data-step="4">4</span>
+      <span class="progress-dot" data-step="3">3</span>
+      <span class="progress-dot" data-step="2">2</span>
+      <span class="progress-dot" data-step="1">1</span>
+    </div>
+
+    <!-- Active Step Container -->
+    <div class="grounding-step-card" id="grounding-step-card">
+      <div class="step-header">
+        <h3 id="step-number-title">שלב 5</h3>
+        <h1 id="step-instruction-title">ראייה</h1>
+        <p id="step-description">זהו 5 דברים שאתם יכולים לראות סביבכם. לחצו על כל משבצת לאחר שהתמקדתם בה.</p>
+      </div>
+
+      <!-- Interactive items grid (Changes dynamically per step) -->
+      <div class="grounding-items-grid" id="grounding-items-grid">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <div class="grounding-nav-actions">
+      <button id="grounding-next-btn" class="btn btn-primary" disabled>
+        <span>אשרו את כל הפריטים להמשך</span>
+        <i data-lucide="arrow-left"></i>
+      </button>
+    </div>
+  </div>
+</div>

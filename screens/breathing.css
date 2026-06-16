@@ -1,0 +1,238 @@
+/* Breathing Screen Styles */
+.breathing-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.screen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+body.high-contrast .back-btn {
+  border: 2px solid #FFFFFF;
+  background-color: #000;
+}
+
+.back-btn i {
+  width: 20px;
+  height: 20px;
+}
+
+.header-spacer {
+  width: 40px;
+}
+
+.breathing-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  padding: 10px 0;
+}
+
+/* Instruction Text Box */
+.instruction-box {
+  text-align: center;
+}
+
+#breath-instruction {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+  min-height: 40px;
+}
+
+body.high-contrast #breath-instruction {
+  color: #00FFFF;
+}
+
+#breath-sub-instruction {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.breath-timer {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  background-color: var(--bg-card);
+  display: inline-block;
+  padding: 4px 18px;
+  border-radius: 100px;
+  box-shadow: var(--shadow-sm);
+}
+
+body.high-contrast .breath-timer {
+  border: 2px solid #FFFFFF;
+  background-color: #000000;
+}
+
+/* Visual Breathing Orb */
+.orb-outer-wrapper {
+  position: relative;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.breathing-orb {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsl(190, 60%, 55%) 0%, hsl(205, 55%, 52%) 100%);
+  box-shadow: 0 0 30px rgba(0, 150, 180, 0.4);
+  transform: scale(1);
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+}
+
+body.high-contrast .breathing-orb {
+  background: #00FFFF;
+  border: 4px solid #FFFFFF;
+  box-shadow: none;
+}
+
+/* Wave Pulsing Rings behind the Orb */
+.orb-wave-ring {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-primary-light);
+  background-color: rgba(0, 150, 180, 0.03);
+  transform: scale(1);
+  opacity: 0.8;
+  z-index: 1;
+  pointer-events: none;
+}
+
+body.high-contrast .orb-wave-ring {
+  border: 1px dashed #FFFFFF;
+  background-color: transparent;
+}
+
+/* Slow continuous pulse animation when idle */
+@keyframes continuousWave {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.0);
+    opacity: 0;
+  }
+}
+
+.orb-wave-ring.ring-1 {
+  animation: continuousWave 4s infinite linear;
+}
+.orb-wave-ring.ring-2 {
+  animation: continuousWave 4s infinite linear 2s;
+}
+
+/* Control Panel */
+.breathing-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+body.high-contrast .breathing-controls {
+  border: 2px solid #FFFFFF;
+  background-color: #000;
+}
+
+.rhythm-group-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.rhythm-selector {
+  display: flex;
+  gap: 8px;
+}
+
+.rhythm-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px;
+  border-radius: var(--border-radius-md);
+  border: 1.5px solid rgba(0, 0, 0, 0.06);
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-quick);
+}
+
+body.high-contrast .rhythm-btn {
+  border: 2px solid #FFFFFF;
+  background-color: #000;
+  color: #FFFFFF;
+}
+
+.rhythm-btn .rhythm-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.rhythm-btn .rhythm-ratio {
+  font-size: 11px;
+}
+
+.rhythm-btn.active {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+body.high-contrast .rhythm-btn.active {
+  background-color: #00FFFF;
+  color: #000000;
+  border-color: #FFFFFF;
+  font-weight: 700;
+}
+
+.btn-breath-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 600;
+}
+.btn-breath-toggle i {
+  width: 18px;
+  height: 18px;
+}

@@ -1,0 +1,209 @@
+/* Grounding Screen Styles */
+.grounding-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.grounding-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+/* Step Progress Dots */
+.step-progress {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.progress-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: var(--transition-bounce);
+}
+
+body.high-contrast .progress-dot {
+  border: 2px solid #FFFFFF;
+  background-color: #000;
+  color: #FFF;
+}
+
+.progress-dot.active {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  transform: scale(1.15);
+  border-color: var(--color-primary);
+}
+
+body.high-contrast .progress-dot.active {
+  background-color: #00FFFF;
+  color: #000000;
+  border-color: #FFFFFF;
+}
+
+.progress-dot.completed {
+  background-color: var(--color-success);
+  color: #FFFFFF;
+  border-color: var(--color-success);
+}
+
+body.high-contrast .progress-dot.completed {
+  background-color: #00FF00;
+  color: #000000;
+  border-color: #FFFFFF;
+}
+
+/* Step Card */
+.grounding-step-container {
+  flex: 1;
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  padding: 24px 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.4s ease;
+}
+
+body.high-contrast .grounding-step-container {
+  border: 2px solid #FFFFFF;
+  background-color: #000;
+}
+
+.step-header {
+  text-align: center;
+}
+
+#step-number-title {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+body.high-contrast #step-number-title {
+  color: #00FFFF;
+}
+
+#step-instruction-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+#step-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Interactive check-off list */
+.grounding-items-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.grounding-item-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: var(--bg-primary);
+  border: 1.5px solid transparent;
+  padding: 16px;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-align: right;
+}
+
+body.high-contrast .grounding-item-card {
+  border: 2px solid #FFFFFF;
+  background-color: #000000;
+}
+
+.grounding-item-card:hover {
+  transform: translateY(-1px);
+}
+
+.grounding-checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--text-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  transition: var(--transition-quick);
+}
+
+.grounding-checkbox i {
+  width: 14px;
+  height: 14px;
+  color: #FFFFFF;
+  opacity: 0;
+  stroke-width: 3px;
+}
+
+.grounding-item-text {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+/* Checked State styles */
+.grounding-item-card.checked {
+  background-color: var(--color-success-light);
+  border-color: var(--color-success);
+}
+
+body.high-contrast .grounding-item-card.checked {
+  background-color: #003300;
+  border-color: #00FF00;
+}
+
+.grounding-item-card.checked .grounding-checkbox {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+body.high-contrast .grounding-item-card.checked .grounding-checkbox {
+  background-color: #00FF00;
+  border-color: #FFFFFF;
+}
+
+.grounding-item-card.checked .grounding-checkbox i {
+  opacity: 1;
+}
+
+body.high-contrast .grounding-item-card.checked .grounding-checkbox i {
+  color: #000000;
+}
+
+/* Nav Actions */
+.grounding-nav-actions {
+  margin-top: 10px;
+}

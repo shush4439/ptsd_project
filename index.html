@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>HelpP - תמיכה בעת משבר</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Shared Stylesheet -->
+  <link rel="stylesheet" href="shared.css">
+  
+  <!-- PWA Web Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0096b4">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icon-192.png">
+
+  <!-- Screen CSS Mount (Loaded dynamically by Router) -->
+  <link id="screen-styles" rel="stylesheet" href="">
+</head>
+<body>
+
+  <!-- Desktop Device Container -->
+  <div class="device-wrapper">
+    <div class="phone-frame">
+      <!-- iOS Style Dynamic Island / Notch -->
+      <div class="device-notch"></div>
+      
+      <!-- iOS Style Status Bar -->
+      <div class="status-bar">
+        <div class="status-time" id="status-time">12:00</div>
+        <div class="status-indicators">
+          <i data-lucide="signal" class="status-icon"></i>
+          <i data-lucide="wifi" class="status-icon"></i>
+          <span class="battery-percent" id="status-battery-text">88%</span>
+          <div class="battery-icon-wrapper">
+            <i data-lucide="battery" class="status-icon battery-body"></i>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Content Container for SPA -->
+      <main id="screen-container" class="screen-container">
+        <!-- Screens will be loaded here dynamically -->
+      </main>
+
+      <!-- Global Call/Alert Overlay Mockup -->
+      <div id="global-overlay" class="global-overlay hidden">
+        <div class="overlay-card">
+          <div class="overlay-icon pulse-alert">
+            <i data-lucide="phone-call" class="icon-lg"></i>
+          </div>
+          <h2 id="overlay-title">שיחה מדומה...</h2>
+          <p id="overlay-subtitle">988 קו סיוע בעת משבר</p>
+          <div class="overlay-timer" id="overlay-timer">00:03</div>
+          <button id="close-overlay-btn" class="btn btn-danger">נתק שיחה</button>
+        </div>
+      </div>
+
+      <!-- Floating SOS button (Always visible on all screens except emergency-mode itself) -->
+      <button id="floating-sos-btn" class="floating-sos-btn" aria-label="לחצן מצוקה SOS">
+        <span>SOS</span>
+        <svg class="sos-progress-svg" viewBox="0 0 68 68">
+          <circle class="sos-progress-bg" cx="34" cy="34" r="29.5"></circle>
+          <circle class="sos-progress-fg" cx="34" cy="34" r="29.5"></circle>
+        </svg>
+      </button>
+
+      <!-- iOS Home Indicator bar for desktop mockup -->
+      <div class="home-indicator"></div>
+
+      <!-- Bottom Tab Bar Navigation -->
+      <nav class="bottom-nav" id="bottom-nav">
+        <a href="focus" class="nav-item" data-link>
+          <svg class="custom-xo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M8 10l3 4M11 10l-3 4" />
+            <circle cx="15" cy="12" r="2" />
+          </svg>
+          <span>מיקוד</span>
+        </a>
+        <a href="recovery" class="nav-item" data-link>
+          <i data-lucide="check-square"></i>
+          <span>התאוששות</span>
+        </a>
+        <a href="login" class="nav-item" data-link id="nav-logout-btn">
+          <i data-lucide="log-out"></i>
+          <span>יציאה</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Shared Javascript Engine -->
+  <script src="shared.js"></script>
+  
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('[PWA] Service Worker registered scope:', reg.scope))
+          .catch(err => console.error('[PWA] Service Worker registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>

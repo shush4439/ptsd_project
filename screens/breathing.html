@@ -1,0 +1,50 @@
+<div class="breathing-screen screen-fade-in">
+  <!-- Top Navigation Header -->
+  <div class="screen-header">
+    <a href="home" data-link class="back-btn" aria-label="חזרה לדף הבית">
+      <i data-lucide="arrow-right"></i>
+    </a>
+    <h2>מרחב נשימה</h2>
+    <div class="header-spacer"></div>
+  </div>
+
+  <div class="breathing-body">
+    <!-- Active cycle instructions -->
+    <div class="instruction-box">
+      <h1 id="breath-instruction">מוכנים</h1>
+      <p id="breath-sub-instruction">לחצו על הכפתור למטה כדי להתחיל מחזור נשימה</p>
+      <div id="breath-timer" class="breath-timer">--</div>
+    </div>
+
+    <!-- Visual Breathing Orb -->
+    <div class="orb-outer-wrapper">
+      <div class="orb-wave-ring ring-1"></div>
+      <div class="orb-wave-ring ring-2"></div>
+      <div id="breathing-orb" class="breathing-orb"></div>
+    </div>
+
+    <!-- Controls Panel -->
+    <div class="breathing-controls">
+      <div class="rhythm-group-label">בחרו קצב נשימה:</div>
+      <div class="rhythm-selector">
+        <button class="rhythm-btn active" data-rhythm="box">
+          <span class="rhythm-name">ריבוע</span>
+          <span class="rhythm-ratio">4-4-4-4</span>
+        </button>
+        <button class="rhythm-btn" data-rhythm="calm">
+          <span class="rhythm-name">רוגע</span>
+          <span class="rhythm-ratio">4-7-8</span>
+        </button>
+        <button class="rhythm-btn" data-rhythm="equal">
+          <span class="rhythm-name">שווה</span>
+          <span class="rhythm-ratio">5-5</span>
+        </button>
+      </div>
+
+      <button id="breath-toggle-btn" class="btn btn-primary btn-breath-toggle">
+        <i data-lucide="play"></i>
+        <span>התחל</span>
+      </button>
+    </div>
+  </div>
+</div>

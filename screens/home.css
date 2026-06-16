@@ -1,0 +1,182 @@
+/* Home Grid Dashboard Styles */
+.home-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 24px;
+}
+
+.home-header {
+  margin-top: 10px;
+  animation: fadeInDown 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.home-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.home-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  animation: fadeInUp 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Grid Cards Base */
+.grid-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-primary);
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  padding: 14px;
+  aspect-ratio: 1 / 1;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  transition: var(--transition-bounce);
+  cursor: pointer;
+}
+
+.grid-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+.grid-card:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+body.high-contrast .grid-card {
+  border: 3px solid #FFFFFF !important;
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  box-shadow: none;
+}
+
+/* Card Icons */
+.card-icon-wrapper {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card-icon-wrapper i, .card-icon-wrapper svg {
+  width: 44px;
+  height: 44px;
+  stroke-width: 2px;
+}
+
+body.high-contrast .card-icon-wrapper {
+  background: transparent !important;
+  border: 2px solid #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+
+/* Card Typography */
+.card-info h3 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.card-info p {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.2;
+}
+
+body.high-contrast .card-info p {
+  color: #E0E0E0 !important;
+}
+
+/* Unique Soft Calming Card Gradients (Pastel) */
+.card-breathe {
+  background: linear-gradient(135deg, hsl(185, 45%, 95%), hsl(185, 45%, 90%));
+}
+.card-breathe .card-icon-wrapper {
+  background-color: hsl(185, 45%, 82%);
+  color: hsl(185, 60%, 35%);
+}
+
+.card-grounding {
+  background: linear-gradient(135deg, hsl(145, 40%, 95%), hsl(145, 40%, 90%));
+}
+.card-grounding .card-icon-wrapper {
+  background-color: hsl(145, 40%, 82%);
+  color: hsl(145, 50%, 32%);
+}
+
+.card-sounds {
+  background: linear-gradient(135deg, hsl(205, 50%, 95%), hsl(205, 50%, 90%));
+}
+.card-sounds .card-icon-wrapper {
+  background-color: hsl(205, 50%, 83%);
+  color: hsl(205, 60%, 38%);
+}
+
+.card-focus {
+  background: linear-gradient(135deg, hsl(265, 40%, 96%), hsl(265, 40%, 91%));
+}
+.card-focus .card-icon-wrapper {
+  background-color: hsl(265, 40%, 83%);
+  color: hsl(265, 50%, 42%);
+}
+
+.card-recovery {
+  background: linear-gradient(135deg, hsl(35, 60%, 96%), hsl(35, 60%, 91%));
+}
+.card-recovery .card-icon-wrapper {
+  background-color: hsl(35, 60%, 84%);
+  color: hsl(35, 70%, 38%);
+}
+
+.card-support {
+  background: linear-gradient(135deg, hsl(10, 50%, 96%), hsl(10, 50%, 91%));
+}
+.card-support .card-icon-wrapper {
+  background-color: hsl(10, 50%, 84%);
+  color: hsl(10, 60%, 42%);
+}
+
+/* Home Footer Tip */
+.home-footer-tip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 12px 16px;
+  border-radius: var(--border-radius-md);
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+body.high-contrast .home-footer-tip {
+  background-color: #000;
+  border: 2px solid #FFFFFF;
+  color: #FFF;
+}
+
+.home-footer-tip i {
+  width: 16px;
+  height: 16px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
