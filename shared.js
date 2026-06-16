@@ -369,7 +369,7 @@ function initRouter() {
         sosBtn.style.display = 'none';
         navBar.style.display = 'none';
       } else if (screenName === 'login') {
-        sosBtn.style.display = 'flex';
+        sosBtn.style.display = 'none';
         navBar.style.display = 'none';
       } else {
         sosBtn.style.display = 'flex';

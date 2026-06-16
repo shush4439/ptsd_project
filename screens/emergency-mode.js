@@ -44,10 +44,7 @@
     exitProgressCircle.style.strokeDashoffset = exitCircumference;
   }
 
-  // Initialize button text based on unlock status
-  if (exitTextEl && window.AppState && window.AppState.allowHomeAccess) {
-    exitTextEl.textContent = 'נרגענו אפשר להמשיך';
-  }
+
 
   if (exitBtn && exitWrapper && exitProgressCircle) {
     let exitTimer = null;
