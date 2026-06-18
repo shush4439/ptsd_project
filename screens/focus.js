@@ -318,6 +318,13 @@
       onClick();
     });
 
+    // Prevent touch/mouse events from bubbling up to playfieldMaze, which intercepts and prevents click activation on mobile
+    ['touchstart', 'touchmove', 'touchend', 'mousedown', 'mousemove', 'mouseup'].forEach(evt => {
+      overlay.addEventListener(evt, (e) => {
+        e.stopPropagation();
+      });
+    });
+
     playfieldMaze.appendChild(overlay);
     if (window.lucide) window.lucide.createIcons();
   };
