@@ -312,11 +312,18 @@
       </div>
     `;
 
-    // Attach button event
-    overlay.querySelector('button').addEventListener('click', () => {
+    // Attach button events with touch preventDefault to prevent phantom mouse clicks
+    const nextBtn = overlay.querySelector('button');
+    const handleNextStep = (e) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       overlay.remove();
       onClick();
-    });
+    };
+    nextBtn.addEventListener('click', handleNextStep);
+    nextBtn.addEventListener('touchend', handleNextStep);
 
     // Prevent touch/mouse events from bubbling up to playfieldMaze, which intercepts and prevents click activation on mobile
     ['touchstart', 'touchmove', 'touchend', 'mousedown', 'mousemove', 'mouseup'].forEach(evt => {
