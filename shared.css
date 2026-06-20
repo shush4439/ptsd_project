@@ -107,11 +107,16 @@ html, body {
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 64px 20px 180px 20px; /* Safe space top/bottom to clear SOS button and navigation bar */
+  padding: 64px 20px 96px 20px; /* Space bottom to clear only the floating SOS button */
   position: relative;
   scroll-behavior: smooth;
   display: flex;
   flex-direction: column;
+}
+
+/* Home screen specific padding to clear the Bottom Navigation Bar + SOS button */
+body.route-home .screen-container {
+  padding-bottom: 180px;
 }
 
 /* Hide scrollbars but keep functionality */
@@ -383,7 +388,10 @@ body.high-contrast .sos-progress-fg {
     padding-top: 10px; /* Safe padding for real phone notches */
   }
   .screen-container {
-    padding: 56px 16px 180px 16px;
+    padding: 56px 16px 96px 16px;
+  }
+  body.route-home .screen-container {
+    padding-bottom: 180px;
   }
 }
 
@@ -715,6 +723,9 @@ body.high-contrast .toast-message {
   
   .screen-container {
     padding-top: 24px !important; /* Compact padding since device notch is removed */
+    padding-bottom: 96px !important;
+  }
+  body.route-home .screen-container {
     padding-bottom: 150px !important;
   }
 }

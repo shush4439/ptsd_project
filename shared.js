@@ -342,6 +342,18 @@ function initRouter() {
 
         AppState.currentRoute = screenName;
         
+        // Update body class for route-specific layout rules
+        if (document.body) {
+          const classesToRemove = [];
+          document.body.classList.forEach(cls => {
+            if (cls.startsWith('route-')) {
+              classesToRemove.push(cls);
+            }
+          });
+          classesToRemove.forEach(cls => document.body.classList.remove(cls));
+          document.body.classList.add(`route-${screenName}`);
+        }
+
         // Save last route
         localStorage.setItem('lastRoute', screenName);
 
@@ -368,12 +380,12 @@ function initRouter() {
       if (screenName === 'login') {
         sosBtn.style.display = 'none';
         navBar.style.display = 'none';
-      } else if (screenName === 'emergency-mode') {
-        sosBtn.style.display = 'flex';
-        navBar.style.display = 'none';
-      } else {
+      } else if (screenName === 'home') {
         sosBtn.style.display = 'flex';
         navBar.style.display = 'flex';
+      } else {
+        sosBtn.style.display = 'flex';
+        navBar.style.display = 'none';
       }
 
     } catch (err) {
