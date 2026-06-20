@@ -450,6 +450,12 @@ function initRouter() {
     let startY = 0;
     const longPressDuration = 1000; // Strictly 1000ms
 
+    // Drag-to-edge constraint state variables
+    let isDragging = false;
+    let initialLeft = 20;
+    let parentWidth = 0;
+    let btnWidth = 0;
+
     // Circular progress tracking
     let animationFrameId = null;
     const progressCircle = sosBtn.querySelector('.sos-progress-fg');
@@ -466,17 +472,48 @@ function initRouter() {
       }
     };
 
+    // Calculate boundary and snap the button to left/right edge
+    const snapToEdge = () => {
+      const parent = sosBtn.parentElement;
+      if (!parent) return;
+
+      const parentRect = parent.getBoundingClientRect();
+      const currentLeft = sosBtn.offsetLeft;
+      const leftBound = 20;
+      const rightBound = parentRect.width - btnWidth - 20;
+      const midpoint = (parentRect.width - btnWidth) / 2;
+
+      // Snapping strictly to the left edge or right edge
+      const targetLeft = currentLeft < midpoint ? leftBound : rightBound;
+
+      // Animate movement smoothly on snap release
+      sosBtn.style.transition = 'left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2)';
+      sosBtn.style.left = `${targetLeft}px`;
+
+      // Clear the transition property after animation completes
+      setTimeout(() => {
+        sosBtn.style.transition = '';
+      }, 300);
+    };
+
     const startPress = (e) => {
       if (isPressed) return;
       if (e.type === 'mousedown' && e.button !== 0) return; // Left click only
 
       isPressed = true;
       isLongPress = false;
+      isDragging = false;
 
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const clientY = e.touches ? e.touches[0].clientY : e.clientY;
       startX = clientX;
       startY = clientY;
+
+      // Cache size variables dynamically for responsive viewports
+      const parent = sosBtn.parentElement;
+      parentWidth = parent ? parent.getBoundingClientRect().width : 412;
+      btnWidth = sosBtn.offsetWidth || 62;
+      initialLeft = sosBtn.offsetLeft;
 
       // Visual holding state
       sosBtn.classList.add('holding');
@@ -511,6 +548,11 @@ function initRouter() {
       isPressed = false;
       clearTimeout(pressTimer);
       resetHoldingState();
+
+      if (isDragging) {
+        snapToEdge();
+        isDragging = false;
+      }
     };
 
     const cancelPress = (e) => {
@@ -518,16 +560,35 @@ function initRouter() {
       isPressed = false;
       clearTimeout(pressTimer);
       resetHoldingState();
+
+      if (isDragging) {
+        snapToEdge();
+        isDragging = false;
+      }
     };
 
     const movePress = (e) => {
       if (!isPressed) return;
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      const deltaX = Math.abs(clientX - startX);
-      const deltaY = Math.abs(clientY - startY);
-      if (deltaX > 10 || deltaY > 10) {
-        cancelPress(e);
+      const deltaX = clientX - startX;
+
+      // Trigger horizontal dragging mode if dragging exceeds 10px threshold
+      if (!isDragging && Math.abs(deltaX) > 10) {
+        isDragging = true;
+        clearTimeout(pressTimer);
+        resetHoldingState();
+      }
+
+      if (isDragging) {
+        let newLeft = initialLeft + deltaX;
+        const leftBound = 20;
+        const rightBound = parentWidth - btnWidth - 20;
+        
+        // Keep button strictly constrained within horizontal bounds
+        newLeft = Math.max(leftBound, Math.min(newLeft, rightBound));
+        
+        sosBtn.style.left = `${newLeft}px`;
+        sosBtn.style.right = 'auto';
       }
     };
 
