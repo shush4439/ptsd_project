@@ -1,5 +1,5 @@
 /**
- * Haven - Production API Backend Server
+ * HelpP - Production API Backend Server
  * Express app managing static content, REST APIs, session cookies, and security.
  */
 
@@ -11,7 +11,7 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const SESSION_SECRET = process.env.SESSION_SECRET || 'haven-production-secure-default-key';
+const SESSION_SECRET = process.env.SESSION_SECRET || 'helpp-production-secure-default-key';
 
 // HTTPS redirection middleware for production (cloud deployment)
 app.use((req, res, next) => {
@@ -213,5 +213,5 @@ app.get('*', (req, res) => {
 
 // Start Server listening
 app.listen(PORT, () => {
-  console.log(`[Server] Haven PTSD support backend running on port ${PORT}`);
+  console.log(`[Server] HelpP PTSD support backend running on port ${PORT}`);
 });

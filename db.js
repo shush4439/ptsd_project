@@ -1,5 +1,5 @@
 /**
- * Haven - Database Connectivity Engine
+ * HelpP - Database Connectivity Engine
  * Supports PostgreSQL connection pooling and auto-creates schema.
  * Operates with an intelligent in-memory fallback for local developers.
  */

@@ -1,9 +1,9 @@
 /**
- * Haven - PWA Service Worker
+ * HelpP - PWA Service Worker
  * Implements static asset caching and handles offline capabilities.
  */
 
-const CACHE_NAME = 'haven-static-cache-v1';
+const CACHE_NAME = 'helpp-static-cache-v1';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',

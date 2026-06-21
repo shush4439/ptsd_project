@@ -1,5 +1,5 @@
 /**
- * Haven - PTSD Crisis Support App
+ * HelpP - PTSD Crisis Support App
  * Shared JavaScript Engine (Router, State, and Audio Synth)
  */
 

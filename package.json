@@ -1,7 +1,7 @@
 {
-  "name": "havens-app",
+  "name": "helpp-app",
   "version": "1.0.0",
-  "description": "Haven - PTSD Crisis Support App Backend",
+  "description": "HelpP - PTSD Crisis Support App Backend",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
