@@ -133,13 +133,13 @@ body.high-contrast .checklist-item {
   width: 24px;
   height: 24px;
   border-radius: 50%; /* Circular checkboxes */
-  border: 2px solid var(--text-secondary);
-  background-color: var(--bg-primary);
+  border: 2.2px solid #D1D5DB; /* Only light gray border */
+  background-color: transparent; /* No fill color */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  transition: var(--transition-quick);
+  transition: border-color 180ms ease, background-color 180ms ease;
 }
 
 body.high-contrast .custom-checkbox {
@@ -153,7 +153,7 @@ body.high-contrast .custom-checkbox {
   color: #FFFFFF;
   opacity: 0;
   stroke-width: 3.5px;
-  transition: var(--transition-quick);
+  transition: opacity 180ms ease;
 }
 
 .checklist-text {
