@@ -624,10 +624,24 @@ function initRouter() {
       e.stopPropagation();
     });
 
-    sosBtn.addEventListener('mousedown', startPress);
-    sosBtn.addEventListener('mouseup', endPress);
-    sosBtn.addEventListener('mousemove', movePress);
-    sosBtn.addEventListener('mouseleave', cancelPress);
+    // Desktop mouse dragging support: Bind to document to prevent drag interruption when cursor leaves button bounds
+    const moveDragMouse = (e) => {
+      movePress(e);
+    };
+
+    const endDragMouse = (e) => {
+      endPress(e);
+      document.removeEventListener('mousemove', moveDragMouse);
+      document.removeEventListener('mouseup', endDragMouse);
+    };
+
+    sosBtn.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return; // Left click only
+      e.preventDefault(); // Prevent text selection/drag ghosting
+      startPress(e);
+      document.addEventListener('mousemove', moveDragMouse);
+      document.addEventListener('mouseup', endDragMouse);
+    });
 
     sosBtn.addEventListener('touchstart', (e) => {
       e.preventDefault();
