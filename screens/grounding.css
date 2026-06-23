@@ -152,20 +152,22 @@ body.high-contrast .grounding-item-card {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: 2px solid var(--text-secondary);
+  border: 2.2px solid #D1D5DB; /* Only light gray border */
+  background-color: transparent; /* No fill color */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  transition: var(--transition-quick);
+  transition: border-color 180ms ease, background-color 180ms ease;
 }
 
 .grounding-checkbox i {
   width: 14px;
   height: 14px;
   color: #FFFFFF;
-  opacity: 0;
+  opacity: 0; /* Completely hidden */
   stroke-width: 3px;
+  transition: opacity 180ms ease;
 }
 
 .grounding-item-text {
