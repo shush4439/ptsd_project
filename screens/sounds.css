@@ -88,19 +88,12 @@ body.high-contrast .tile-icon-wrapper {
 }
 
 /* Tile Text Content */
-.tile-info h3 {
+.tile-title {
   font-size: 14px;
   font-weight: 700;
-  margin-bottom: 2px;
-}
-
-.tile-info p {
-  font-size: 11px;
-  color: var(--text-secondary);
-}
-
-body.high-contrast .tile-info p {
-  color: #E0E0E0;
+  margin-top: 6px;
+  margin-bottom: 0;
+  line-height: 1.3;
 }
 
 /* Active Highlight / Playing State with clear glow/color */
