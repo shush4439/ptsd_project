@@ -48,9 +48,6 @@
         if (sound === 'wind') AudioEngine.stopWind();
         if (sound === 'binaural') AudioEngine.stopBinaural();
       } else {
-        // Auto-stop all other sounds first (Only one sound at a time preferred)
-        stopAllActiveSounds();
-        
         // Start this sound
         if (sound === 'rain') AudioEngine.startRain();
         if (sound === 'ocean') AudioEngine.startOcean();
