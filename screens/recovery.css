@@ -147,7 +147,7 @@ body.high-contrast .custom-checkbox {
   background-color: #000;
 }
 
-.custom-checkbox i {
+.custom-checkbox i, .custom-checkbox svg {
   width: 14px;
   height: 14px;
   color: #FFFFFF;
@@ -175,11 +175,13 @@ body.high-contrast .checklist-cb:checked + .custom-checkbox {
   border-color: #FFFFFF;
 }
 
-body.high-contrast .checklist-cb:checked + .custom-checkbox i {
+body.high-contrast .checklist-cb:checked + .custom-checkbox i,
+body.high-contrast .checklist-cb:checked + .custom-checkbox svg {
   color: #000000;
 }
 
-.checklist-cb:checked + .custom-checkbox i {
+.checklist-cb:checked + .custom-checkbox i,
+.checklist-cb:checked + .custom-checkbox svg {
   opacity: 1;
 }
 

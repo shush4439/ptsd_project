@@ -161,7 +161,8 @@ body.high-contrast .grounding-item-card {
   transition: border-color 180ms ease, background-color 180ms ease;
 }
 
-.grounding-checkbox i {
+.grounding-checkbox i,
+.grounding-checkbox svg {
   width: 14px;
   height: 14px;
   color: #FFFFFF;
@@ -197,11 +198,13 @@ body.high-contrast .grounding-item-card.checked .grounding-checkbox {
   border-color: #FFFFFF;
 }
 
-.grounding-item-card.checked .grounding-checkbox i {
+.grounding-item-card.checked .grounding-checkbox i,
+.grounding-item-card.checked .grounding-checkbox svg {
   opacity: 1;
 }
 
-body.high-contrast .grounding-item-card.checked .grounding-checkbox i {
+body.high-contrast .grounding-item-card.checked .grounding-checkbox i,
+body.high-contrast .grounding-item-card.checked .grounding-checkbox svg {
   color: #000000;
 }
 
