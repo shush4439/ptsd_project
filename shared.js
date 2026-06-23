@@ -465,8 +465,11 @@ function initRouter() {
     // Drag-to-edge constraint state variables
     let isDragging = false;
     let initialLeft = 20;
+    let initialTop = 0;
     let parentWidth = 0;
+    let parentHeight = 0;
     let btnWidth = 0;
+    let btnHeight = 0;
 
     // Circular progress tracking
     let animationFrameId = null;
@@ -498,8 +501,8 @@ function initRouter() {
       // Snapping strictly to the left edge or right edge
       const targetLeft = currentLeft < midpoint ? leftBound : rightBound;
 
-      // Animate movement smoothly on snap release
-      sosBtn.style.transition = 'left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2)';
+      // Animate movement smoothly on snap release (both X and Y)
+      sosBtn.style.transition = 'left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2), top 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2)';
       sosBtn.style.left = `${targetLeft}px`;
 
       // Clear the transition property after animation completes
@@ -524,8 +527,11 @@ function initRouter() {
       // Cache size variables dynamically for responsive viewports
       const parent = sosBtn.parentElement;
       parentWidth = parent ? parent.getBoundingClientRect().width : 412;
+      parentHeight = parent ? parent.getBoundingClientRect().height : 732;
       btnWidth = sosBtn.offsetWidth || 62;
+      btnHeight = sosBtn.offsetHeight || 62;
       initialLeft = sosBtn.offsetLeft;
+      initialTop = sosBtn.offsetTop;
 
       // Visual holding state
       sosBtn.classList.add('holding');
@@ -582,10 +588,12 @@ function initRouter() {
     const movePress = (e) => {
       if (!isPressed) return;
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
       const deltaX = clientX - startX;
+      const deltaY = clientY - startY;
 
-      // Trigger horizontal dragging mode if dragging exceeds 10px threshold
-      if (!isDragging && Math.abs(deltaX) > 10) {
+      // Trigger dragging mode if dragging exceeds 10px threshold in either direction
+      if (!isDragging && (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10)) {
         isDragging = true;
         clearTimeout(pressTimer);
         resetHoldingState();
@@ -593,13 +601,20 @@ function initRouter() {
 
       if (isDragging) {
         let newLeft = initialLeft + deltaX;
+        let newTop = initialTop + deltaY;
+        
         const leftBound = 20;
         const rightBound = parentWidth - btnWidth - 20;
+        const topBound = 20;
+        const bottomBound = parentHeight - btnHeight - 20;
         
-        // Keep button strictly constrained within horizontal bounds
+        // Keep button strictly constrained within bounds
         newLeft = Math.max(leftBound, Math.min(newLeft, rightBound));
+        newTop = Math.max(topBound, Math.min(newTop, bottomBound));
         
         sosBtn.style.left = `${newLeft}px`;
+        sosBtn.style.top = `${newTop}px`;
+        sosBtn.style.bottom = 'auto';
         sosBtn.style.right = 'auto';
       }
     };

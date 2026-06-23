@@ -21,6 +21,21 @@
       <p class="progress-tip" id="recovery-tip">סמנו את השלבים הבאים בעודכם חוזרים באיטיות לתחושת רוגע.</p>
     </div>
 
+    <!-- Mode Selector Segmented Controller -->
+    <div class="recovery-mode-card">
+      <span class="mode-title-label">מצב עבודה:</span>
+      <div class="mode-toggle-group">
+        <button class="mode-toggle-btn active" id="mode-active-btn">
+          <i data-lucide="check-square"></i>
+          <span>ביצוע פעיל</span>
+        </button>
+        <button class="mode-toggle-btn" id="mode-guided-btn">
+          <i data-lucide="play-circle"></i>
+          <span>הדרכה / הדגמה</span>
+        </button>
+      </div>
+    </div>
+
     <!-- Stabilization Checklist -->
     <div class="recovery-checklist" id="recovery-checklist">
       <!-- Item 1 -->
@@ -28,7 +43,7 @@
         <label class="check-label">
           <input type="checkbox" class="checklist-cb" data-index="0">
           <span class="custom-checkbox"><i data-lucide="check"></i></span>
-          <span class="checklist-text">שתו כוס מים קרים</span>
+          <span class="checklist-text">לשתות כוס מים קרים</span>
         </label>
       </div>
 
@@ -37,7 +52,7 @@
         <label class="check-label">
           <input type="checkbox" class="checklist-cb" data-index="1">
           <span class="custom-checkbox"><i data-lucide="check"></i></span>
-          <span class="checklist-text">שטפו את הפנים או את פרקי הידיים במים קרים</span>
+          <span class="checklist-text">לשטוף את הפנים או את פרקי הידיים במים קרים</span>
         </label>
       </div>
 
@@ -46,7 +61,7 @@
         <label class="check-label">
           <input type="checkbox" class="checklist-cb" data-index="2">
           <span class="custom-checkbox"><i data-lucide="check"></i></span>
-          <span class="checklist-text">השמיטו את הכתפיים והרפו את הלסת</span>
+          <span class="checklist-text">להשמיט את הכתפיים ולהרפות את הלסת</span>
         </label>
       </div>
 
@@ -55,7 +70,7 @@
         <label class="check-label">
           <input type="checkbox" class="checklist-cb" data-index="3">
           <span class="custom-checkbox"><i data-lucide="check"></i></span>
-          <span class="checklist-text">התעטפו בשמיכה כבדה או במעיל חם</span>
+          <span class="checklist-text">להתעטף בשמיכה כבדה או במעיל חם</span>
         </label>
       </div>
 
@@ -64,7 +79,7 @@
         <label class="check-label">
           <input type="checkbox" class="checklist-cb" data-index="4">
           <span class="custom-checkbox"><i data-lucide="check"></i></span>
-          <span class="checklist-text">הכירו בכך שגל המשבר החזק ביותר כבר עבר</span>
+          <span class="checklist-text">להכיר בכך שגל המשבר החזק ביותר כבר עבר</span>
         </label>
       </div>
     </div>
@@ -75,11 +90,11 @@
       <div class="recovery-shortcuts">
         <a href="breathing" class="shortcut-btn" data-link>
           <i data-lucide="wind"></i>
-          <span>מרחב נשימה</span>
+          <span>לתרגל נשימה</span>
         </a>
         <a href="sounds" class="shortcut-btn" data-link>
           <i data-lucide="music"></i>
-          <span>צלילי רקע</span>
+          <span>להאזין לקולות מרגיעים</span>
         </a>
       </div>
     </div>

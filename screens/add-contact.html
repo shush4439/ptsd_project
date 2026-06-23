@@ -4,33 +4,42 @@
     <a href="support" data-link class="back-btn" aria-label="חזרה למעגל התמיכה">
       <i data-lucide="arrow-right"></i>
     </a>
-    <h2>הוספת איש קשר</h2>
+    <h2>להוסיף איש קשר</h2>
     <div class="header-spacer"></div>
   </div>
 
   <div class="add-contact-body">
     <div class="add-contact-card">
-      <h3>הוספת איש קשר תומך</h3>
+      <h3>להוסיף איש קשר תומך</h3>
       <p class="form-tip">הוסיפו אנשים קרובים שתרצו לעדכן בעת הפעלת לחצן מצוקה (SOS).</p>
       
       <div class="form-group">
         <label for="contact-name">שם</label>
-        <input type="text" id="contact-name" class="form-control" placeholder="לדוגמה: יעל כהן">
+        <div class="input-wrapper">
+          <input type="text" id="contact-name" class="form-control" placeholder="לדוגמה: יעל כהן">
+          <span class="validation-icon"><i data-lucide="check-circle"></i></span>
+        </div>
       </div>
       
       <div class="form-group">
         <label for="contact-phone">מספר טלפון</label>
-        <input type="tel" id="contact-phone" class="form-control" placeholder="לדוגמה: 050-1234567">
+        <div class="input-wrapper">
+          <input type="tel" id="contact-phone" class="form-control" placeholder="לדוגמה: 050-1234567">
+          <span class="validation-icon"><i data-lucide="check-circle"></i></span>
+        </div>
       </div>
 
       <div class="form-group">
         <label for="contact-relation">קשר/קרבה</label>
-        <input type="text" id="contact-relation" class="form-control" placeholder="לדוגמה: חבר/ה, מטפל/ת, בן/בת זוג">
+        <div class="input-wrapper">
+          <input type="text" id="contact-relation" class="form-control" placeholder="לדוגמה: חבר/ה, מטפל/ת, בן/בת זוג">
+          <span class="validation-icon"><i data-lucide="check-circle"></i></span>
+        </div>
       </div>
 
       <button id="add-contact-submit-btn" class="btn btn-primary">
         <i data-lucide="save"></i>
-        <span>שמירת איש קשר</span>
+        <span>לשמור איש קשר</span>
       </button>
     </div>
   </div>

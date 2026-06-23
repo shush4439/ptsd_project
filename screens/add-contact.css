@@ -70,3 +70,50 @@ body.high-contrast #add-contact-submit-btn {
   color: #000000 !important;
   border: 2px solid #FFFFFF !important;
 }
+
+/* Form Live Validation Styles */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper .validation-icon {
+  position: absolute;
+  left: 14px; /* Render validation checkmark on the left in RTL inputs */
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-success);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-quick);
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper .validation-icon i, .input-wrapper .validation-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.5px;
+}
+
+.form-control {
+  padding-left: 16px;
+  transition: border-color var(--transition-quick), padding-left var(--transition-quick);
+}
+
+.form-control.is-valid {
+  border-color: var(--color-success) !important;
+  padding-left: 40px !important; /* Indent input text on left to prevent overlap with checkmark */
+}
+
+.form-control.is-valid ~ .validation-icon {
+  opacity: 1;
+}
+
+body.high-contrast .form-control.is-valid {
+  border-color: #00FF00 !important;
+}
+
+body.high-contrast .input-wrapper .validation-icon {
+  color: #00FF00 !important;
+}

@@ -6,21 +6,41 @@
   const progressBar = document.getElementById('recovery-progress-bar');
   const percentEl = document.getElementById('recovery-percent');
   const tipEl = document.getElementById('recovery-tip');
+  const checklistWrapper = document.getElementById('recovery-checklist');
 
-  // Load saved checklist state
+  const activeModeBtn = document.getElementById('mode-active-btn');
+  const guidedModeBtn = document.getElementById('mode-guided-btn');
+
+  let currentMode = localStorage.getItem('recoveryMode') || 'active';
+
+  // Load saved checklist state depending on the mode
   const loadSavedChecklist = () => {
-    const saved = localStorage.getItem('recoveryChecklist');
-    let checkedStates = [false, false, false, false, false];
+    if (!checklistWrapper) return;
+    const savedActive = localStorage.getItem('recoveryChecklist_active');
+    const savedGuided = localStorage.getItem('recoveryChecklist_guided');
     
-    if (saved) {
-      checkedStates = JSON.parse(saved);
+    let checkedStates = [];
+    if (currentMode === 'guided') {
+      checkedStates = savedGuided ? JSON.parse(savedGuided) : [true, true, true, true, true];
+      checklistWrapper.classList.add('guided-mode');
+      if (guidedModeBtn) guidedModeBtn.classList.add('active');
+      if (activeModeBtn) activeModeBtn.classList.remove('active');
+    } else {
+      checkedStates = savedActive ? JSON.parse(savedActive) : [false, false, false, false, false];
+      checklistWrapper.classList.remove('guided-mode');
+      if (activeModeBtn) activeModeBtn.classList.add('active');
+      if (guidedModeBtn) guidedModeBtn.classList.remove('active');
     }
     
     checkboxes.forEach((cb, idx) => {
       cb.checked = checkedStates[idx] || false;
       const card = cb.closest('.checklist-item');
-      if (card && cb.checked) {
-        card.classList.add('checked');
+      if (card) {
+        if (cb.checked) {
+          card.classList.add('checked');
+        } else {
+          card.classList.remove('checked');
+        }
       }
     });
 
@@ -36,8 +56,12 @@
       if (cb.checked) checkedCount++;
     });
 
-    // Save states
-    localStorage.setItem('recoveryChecklist', JSON.stringify(checkedStates));
+    // Save states for the current mode
+    if (currentMode === 'guided') {
+      localStorage.setItem('recoveryChecklist_guided', JSON.stringify(checkedStates));
+    } else {
+      localStorage.setItem('recoveryChecklist_active', JSON.stringify(checkedStates));
+    }
 
     const total = checkboxes.length;
     const percent = Math.round((checkedCount / total) * 100);
@@ -65,7 +89,7 @@
     }
   };
 
-  // Bind change events
+  // Bind change events to checkboxes
   checkboxes.forEach((cb) => {
     cb.addEventListener('change', () => {
       AudioEngine.resume();
@@ -81,6 +105,22 @@
       updateProgress(true);
     });
   });
+
+  // Bind mode toggle buttons
+  const setMode = (mode) => {
+    AudioEngine.resume();
+    currentMode = mode;
+    localStorage.setItem('recoveryMode', mode);
+    loadSavedChecklist();
+    AudioEngine.playPopSound(400);
+  };
+
+  if (activeModeBtn) {
+    activeModeBtn.addEventListener('click', () => setMode('active'));
+  }
+  if (guidedModeBtn) {
+    guidedModeBtn.addEventListener('click', () => setMode('guided'));
+  }
 
   // Initial load
   loadSavedChecklist();
