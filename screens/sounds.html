@@ -10,85 +10,54 @@
 
   <!-- Intro info -->
   <div class="sounds-intro">
-    <p>השקיטו את התודעה בעזרת קולות רקע מסונתזים בזמן אמת. שלבו מספר צלילים יחד ליצירת המרחב הבטוח והאישי שלכם.</p>
+    <p>השקיטו את התודעה בעזרת קולות רקע מסונתזים בזמן אמת. לחצו על צליל כדי להפעיל אותו, ולחצו שוב כדי להפסיק.</p>
   </div>
 
-  <div class="sounds-list">
-    <!-- Rain Card -->
-    <div class="sound-card" id="card-rain">
-      <div class="sound-info">
-        <div class="sound-icon-bg rain">
-          <i data-lucide="cloud-rain"></i>
-        </div>
-        <div class="sound-text">
-          <h3>מטר גשם</h3>
-          <p>טיפות מרגיעות ברעש ורוד</p>
-        </div>
+  <!-- 2x2 Grid of Sound Tiles -->
+  <div class="sounds-grid">
+    <!-- Rain Tile -->
+    <button class="sound-tile" id="tile-rain" aria-label="מטר גשם">
+      <div class="tile-icon-wrapper rain">
+        <i data-lucide="cloud-rain"></i>
       </div>
-      <div class="sound-controls">
-        <input type="range" class="sound-volume" id="volume-rain" min="0" max="1" step="0.05" value="0.5" aria-label="עוצמת שמע גשם">
-        <button class="sound-toggle-btn" id="play-rain" aria-label="הפעלת/הפסקת גשם">
-          <i data-lucide="play"></i>
-        </button>
+      <div class="tile-info">
+        <h3>מטר גשם</h3>
+        <p>טיפות מרגיעות</p>
       </div>
-    </div>
+    </button>
 
-    <!-- Ocean Card -->
-    <div class="sound-card" id="card-ocean">
-      <div class="sound-info">
-        <div class="sound-icon-bg ocean">
-          <i data-lucide="waves"></i>
-        </div>
-        <div class="sound-text">
-          <h3>גלי אוקיינוס</h3>
-          <p>גלים עמוקים ומחזוריים בתדר נמוך</p>
-        </div>
+    <!-- Ocean Tile -->
+    <button class="sound-tile" id="tile-ocean" aria-label="גלי אוקיינוס">
+      <div class="tile-icon-wrapper ocean">
+        <i data-lucide="waves"></i>
       </div>
-      <div class="sound-controls">
-        <input type="range" class="sound-volume" id="volume-ocean" min="0" max="1" step="0.05" value="0.5" aria-label="עוצמת שמע אוקיינוס">
-        <button class="sound-toggle-btn" id="play-ocean" aria-label="הפעלת/הפסקת אוקיינוס">
-          <i data-lucide="play"></i>
-        </button>
+      <div class="tile-info">
+        <h3>גלי אוקיינוס</h3>
+        <p>גלי ים עמוקים</p>
       </div>
-    </div>
+    </button>
 
-    <!-- Wind Card -->
-    <div class="sound-card" id="card-wind">
-      <div class="sound-info">
-        <div class="sound-icon-bg wind">
-          <i data-lucide="wind"></i>
-        </div>
-        <div class="sound-text">
-          <h3>רוח קלילה</h3>
-          <p>משבי רוח שורקים ומהדהדים</p>
-        </div>
+    <!-- Wind Tile -->
+    <button class="sound-tile" id="tile-wind" aria-label="רוח קלילה">
+      <div class="tile-icon-wrapper wind">
+        <i data-lucide="wind"></i>
       </div>
-      <div class="sound-controls">
-        <input type="range" class="sound-volume" id="volume-wind" min="0" max="1" step="0.05" value="0.5" aria-label="עוצמת שמע רוח">
-        <button class="sound-toggle-btn" id="play-wind" aria-label="הפעלת/הפסקת רוח">
-          <i data-lucide="play"></i>
-        </button>
+      <div class="tile-info">
+        <h3>רוח קלילה</h3>
+        <p>משבי רוח שורקים</p>
       </div>
-    </div>
+    </button>
 
-    <!-- Binaural Beats Card -->
-    <div class="sound-card" id="card-binaural">
-      <div class="sound-info">
-        <div class="sound-icon-bg binaural">
-          <i data-lucide="headphones"></i>
-        </div>
-        <div class="sound-text">
-          <h3>פעימות דו-אוזניות</h3>
-          <p>תדר אלפא 10 הרץ להרפיה (מומלץ להשתמש באוזניות)</p>
-        </div>
+    <!-- Binaural Beats Tile -->
+    <button class="sound-tile" id="tile-binaural" aria-label="פעימות דו-אוזניות">
+      <div class="tile-icon-wrapper binaural">
+        <i data-lucide="headphones"></i>
       </div>
-      <div class="sound-controls">
-        <input type="range" class="sound-volume" id="volume-binaural" min="0" max="1" step="0.05" value="0.5" aria-label="עוצמת שמע פעימות דו-אוזניות">
-        <button class="sound-toggle-btn" id="play-binaural" aria-label="הפעלת/הפסקת פעימות דו-אוזניות">
-          <i data-lucide="play"></i>
-        </button>
+      <div class="tile-info">
+        <h3>פעימות דו-אוזניות</h3>
+        <p>תדר הרפיה 10Hz</p>
       </div>
-    </div>
+    </button>
   </div>
 
   <div class="sounds-footer">

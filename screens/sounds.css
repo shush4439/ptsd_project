@@ -12,195 +12,112 @@
   line-height: 1.5;
 }
 
-.sounds-list {
-  display: flex;
-  flex-direction: column;
+/* Grid of Sound Tiles matching Home Screen style */
+.sounds-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   margin-bottom: 24px;
 }
 
-/* Sound Card: Dual-Layer Grid */
-.sound-card {
-  background-color: var(--bg-card);
-  border-radius: var(--border-radius-md);
-  padding: 16px;
-  box-shadow: var(--shadow-sm);
-  border: 1.5px solid rgba(0, 0, 0, 0.03);
+/* Sound Tile Button styling */
+.sound-tile {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  transition: var(--transition-smooth);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-primary);
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  padding: 14px;
+  aspect-ratio: 1 / 1;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  transition: var(--transition-bounce);
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
 }
 
-body.high-contrast .sound-card {
-  border: 2px solid #FFFFFF;
-  background-color: #000;
-}
-
-.sound-card:hover {
-  transform: translateY(-2px);
+.sound-tile:hover {
+  transform: translateY(-4px) scale(1.02);
   box-shadow: var(--shadow-md);
 }
 
-/* Top Row: Icon, Text, Play Button */
-.sound-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+.sound-tile:active {
+  transform: translateY(1px) scale(0.98);
 }
 
-.sound-info-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+body.high-contrast .sound-tile {
+  border: 3px solid #FFFFFF !important;
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  box-shadow: none;
 }
 
-.sound-icon-bg {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+/* Tile Icon Wrapper */
+.tile-icon-wrapper {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 8px;
   color: #FFFFFF;
-  flex-shrink: 0;
+  transition: var(--transition-smooth);
 }
 
-.sound-icon-bg.rain { background: linear-gradient(135deg, hsl(185, 45%, 65%), hsl(185, 45%, 50%)); }
-.sound-icon-bg.ocean { background: linear-gradient(135deg, hsl(205, 55%, 65%), hsl(205, 55%, 50%)); }
-.sound-icon-bg.wind { background: linear-gradient(135deg, hsl(150, 45%, 60%), hsl(150, 45%, 45%)); }
-.sound-icon-bg.binaural { background: linear-gradient(135deg, hsl(265, 40%, 65%), hsl(265, 40%, 50%)); }
+/* Icon colors matching Home card icons */
+.tile-icon-wrapper.rain { background: linear-gradient(135deg, hsl(185, 45%, 65%), hsl(185, 45%, 50%)); }
+.tile-icon-wrapper.ocean { background: linear-gradient(135deg, hsl(205, 55%, 65%), hsl(205, 55%, 50%)); }
+.tile-icon-wrapper.wind { background: linear-gradient(135deg, hsl(150, 45%, 60%), hsl(150, 45%, 45%)); }
+.tile-icon-wrapper.binaural { background: linear-gradient(135deg, hsl(265, 40%, 65%), hsl(265, 40%, 50%)); }
 
-body.high-contrast .sound-icon-bg {
+body.high-contrast .tile-icon-wrapper {
   background: transparent !important;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #FFFFFF !important;
   color: #FFFFFF !important;
 }
 
-.sound-icon-bg i {
-  width: 20px;
-  height: 20px;
+.tile-icon-wrapper i, .tile-icon-wrapper svg {
+  width: 44px;
+  height: 44px;
+  stroke-width: 2px;
 }
 
-.sound-text h3 {
-  font-size: 16px;
-  font-weight: 600;
+/* Tile Text Content */
+.tile-info h3 {
+  font-size: 14px;
+  font-weight: 700;
   margin-bottom: 2px;
 }
 
-.sound-text p {
+.tile-info p {
   font-size: 11px;
   color: var(--text-secondary);
 }
 
-body.high-contrast .sound-text p {
+body.high-contrast .tile-info p {
   color: #E0E0E0;
 }
 
-/* Toggle Buttons */
-.sound-toggle-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(0, 0, 0, 0.08);
-  background-color: var(--bg-primary);
-  color: var(--text-secondary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: var(--transition-bounce);
-}
-
-body.high-contrast .sound-toggle-btn {
-  border: 2px solid #FFFFFF;
-  background-color: #000;
-  color: #FFF;
-}
-
-.sound-toggle-btn i {
-  width: 18px;
-  height: 18px;
-  stroke-width: 2.5px;
-}
-
-/* Active Highlight States */
-.sound-card.playing {
+/* Active Highlight / Playing State with clear glow/color */
+.sound-tile.playing {
   border-color: var(--color-primary);
   background-color: var(--color-primary-light);
+  box-shadow: 0 0 16px rgba(0, 150, 180, 0.25);
 }
 
-body.high-contrast .sound-card.playing {
+body.high-contrast .sound-tile.playing {
   border-color: #00FFFF !important;
   background-color: #121212 !important;
 }
 
-.sound-card.playing .sound-toggle-btn {
-  background-color: var(--color-primary);
-  color: #FFFFFF;
-  border-color: var(--color-primary);
-}
-
-body.high-contrast .sound-card.playing .sound-toggle-btn {
-  background-color: #00FFFF;
-  color: #000000;
-  border-color: #FFFFFF;
-}
-
-/* Bottom Row: Volume Sliders */
-.sound-controls {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.sound-volume {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 8px;
-  border-radius: 4px;
-  background: var(--bg-input);
-  outline: none;
-  transition: opacity .2s;
-}
-
-body.high-contrast .sound-volume {
-  background: #242424;
-  border: 1px solid #FFFFFF;
-}
-
-/* Custom slider thumb */
-.sound-volume::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  cursor: pointer;
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-}
-
-body.high-contrast .sound-volume::-webkit-slider-thumb {
-  background: #00FFFF;
-  border: 2px solid #000000;
-}
-
-.sound-volume::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  cursor: pointer;
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
-}
-
-body.high-contrast .sound-volume::-moz-range-thumb {
-  background: #00FFFF;
-  border: 2px solid #000000;
+.sound-tile.playing .tile-icon-wrapper {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .sounds-footer {

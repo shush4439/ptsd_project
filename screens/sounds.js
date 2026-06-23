@@ -1,82 +1,72 @@
 /**
- * Safe Sounds Screen Script
+ * Safe Sounds Screen Script - Grid Toggles
  */
 (() => {
   const sounds = ['rain', 'ocean', 'wind', 'binaural'];
   const stopAllBtn = document.getElementById('stop-all-sounds-btn');
 
-  // Synchronize UI with current playing state
+  // Helper to stop all sound engines
+  const stopAllActiveSounds = () => {
+    AudioEngine.stopRain();
+    AudioEngine.stopOcean();
+    AudioEngine.stopWind();
+    AudioEngine.stopBinaural();
+  };
+
+  // Helper to update UI states for all tiles
+  const updateUI = () => {
+    sounds.forEach(sound => {
+      const tile = document.getElementById(`tile-${sound}`);
+      if (!tile) return;
+      const audioState = AppState.audio[sound];
+      
+      if (audioState && audioState.playing) {
+        tile.classList.add('playing');
+      } else {
+        tile.classList.remove('playing');
+      }
+    });
+    if (window.lucide) window.lucide.createIcons();
+  };
+
+  // Synchronize UI on load
+  updateUI();
+
+  // Attach click listeners to tiles
   sounds.forEach(sound => {
-    const card = document.getElementById(`card-${sound}`);
-    const playBtn = document.getElementById(`play-${sound}`);
-    const volSlider = document.getElementById(`volume-${sound}`);
-    const audioState = AppState.audio[sound];
+    const tile = document.getElementById(`tile-${sound}`);
+    if (!tile) return;
 
-    if (!card || !playBtn || !volSlider) return;
-
-    // Set slider value
-    volSlider.value = audioState.volume;
-
-    // Set playing class and icons
-    if (audioState.playing) {
-      card.classList.add('playing');
-      playBtn.innerHTML = `<i data-lucide="square"></i>`;
-    } else {
-      card.classList.remove('playing');
-      playBtn.innerHTML = `<i data-lucide="play"></i>`;
-    }
-
-    // Play/Pause button event listener
-    playBtn.addEventListener('click', () => {
+    tile.addEventListener('click', () => {
       AudioEngine.resume();
+      const audioState = AppState.audio[sound];
 
       if (audioState.playing) {
+        // Stop this sound
         if (sound === 'rain') AudioEngine.stopRain();
         if (sound === 'ocean') AudioEngine.stopOcean();
         if (sound === 'wind') AudioEngine.stopWind();
         if (sound === 'binaural') AudioEngine.stopBinaural();
-        
-        card.classList.remove('playing');
-        playBtn.innerHTML = `<i data-lucide="play"></i>`;
       } else {
+        // Auto-stop all other sounds first (Only one sound at a time preferred)
+        stopAllActiveSounds();
+        
+        // Start this sound
         if (sound === 'rain') AudioEngine.startRain();
         if (sound === 'ocean') AudioEngine.startOcean();
         if (sound === 'wind') AudioEngine.startWind();
         if (sound === 'binaural') AudioEngine.startBinaural();
-        
-        card.classList.add('playing');
-        playBtn.innerHTML = `<i data-lucide="square"></i>`;
       }
       
-      if (window.lucide) window.lucide.createIcons();
-    });
-
-    // Volume slider event listener
-    volSlider.addEventListener('input', (e) => {
-      const vol = parseFloat(e.target.value);
-      AudioEngine.updateVolume(sound, vol);
+      updateUI();
     });
   });
 
-  // Stop All Button click handler
+  // Stop All Button handler
   if (stopAllBtn) {
     stopAllBtn.addEventListener('click', () => {
-      AudioEngine.stopRain();
-      AudioEngine.stopOcean();
-      AudioEngine.stopWind();
-      AudioEngine.stopBinaural();
-
-      sounds.forEach(sound => {
-        const card = document.getElementById(`card-${sound}`);
-        const playBtn = document.getElementById(`play-${sound}`);
-        if (card && playBtn) {
-          card.classList.remove('playing');
-          playBtn.innerHTML = `<i data-lucide="play"></i>`;
-        }
-      });
-      if (window.lucide) window.lucide.createIcons();
+      stopAllActiveSounds();
+      updateUI();
     });
   }
-
-  if (window.lucide) window.lucide.createIcons();
 })();
